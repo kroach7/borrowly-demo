@@ -29,7 +29,9 @@ const LoanPurposesItem = ({ item, isSelected, onPurposeClick }: { item: any, isS
       onClick={handleItemClick}
     >
       <div className="h-[72px] w-full my-[5px] rounded-xl bg-[#F3F3F3] flex justify-start overflow-hidden">
-        <img src={item.purpose_url} className="h-full object-cover object-center" style={{ padding: '12px 16px' }} />
+        <div className="py-[12px] px-[16px]">
+          <img src={item.purpose_url} className="h-full object-cover object-center" />
+        </div>
       </div>
       <span className="text-[12px] font-semibold leading-[166%]">
         {item.purpose_name}
