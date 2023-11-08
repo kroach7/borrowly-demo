@@ -10,7 +10,7 @@ export const getLoanPurposes = async () => {
 
 export const getFilteredOffers = async (params: string, offset: string) => {
   const response = await fetch(
-    `https://api.borrowly.ca/filteredOffers?${params}&limit=12${`&offset=${offset}`}`,
+    `https://api.borrowly.ca/filteredOffers?${params}&limit=4${`&offset=${offset}`}`,
     { cache: "no-store" }
   );
 

@@ -3,59 +3,56 @@
 import { getFilteredOffers } from "@src/services/api";
 import { Card } from "@src/components/";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const ClientItems = () => {
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);
 
-  const [currentPage, setCurrentPage] = useState(0);
+  const [page, setPage] = useState(0);
   const [data, setData] = useState<{}[]>([]);
 
-  const [loading, setLoading] = useState(false);
-
   useEffect(() => {
-    loading &&
-      (async function () {
-        const cards = await getFilteredOffers(
-          params.toString(),
-          `${12 * currentPage}`
-        );
-        setData((prev) => [...prev, ...cards]);
-        setLoading(false);
+    page &&
+      (async function fetchData() {
+        const cards = await getFilteredOffers(params.toString(), `${page * 4}`);
+        setData([...data, ...cards]);
       })();
-  }, [loading]);
+  }, [page]);
 
   useEffect(() => {
-    setCurrentPage(0);
+    setPage(0);
     setData([]);
   }, [searchParams]);
 
-  const scrollHandler = async (e: any) => {
-    if (!loading) {
-      if (
-        e.target.documentElement.scrollHeight -
-          (e.target.documentElement.scrollTop + window.innerHeight) <
-        1
-      ) {
-        setLoading(true);
-        setCurrentPage((prevState) => prevState + 1);
-      }
-    }
-  };
+  const observerTarget = useRef(null);
 
   useEffect(() => {
-    document.addEventListener("scroll", scrollHandler);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setPage((prev) => prev + 1);
+        }
+      },
+      { threshold: 1 }
+    );
 
-    return function () {
-      document.removeEventListener("scroll", scrollHandler);
+    if (observerTarget.current) {
+      observer.observe(observerTarget.current);
+    }
+
+    return () => {
+      if (observerTarget.current) {
+        observer.unobserve(observerTarget.current);
+      }
     };
-  }, []);
+  }, [observerTarget]);
 
   return (
     <div className="grid grid-cols-[1fr_1fr_1fr_1fr] mt-6 gap-[17px] lg:grid-cols-[1fr_1fr_1fr] md:grid-cols-[1fr_1fr] sm:grid-cols-[1fr]">
       {data &&
         data.map((item: any) => <Card key={item.offer_id} item={item} />)}
+      <div ref={observerTarget}></div>
     </div>
   );
 };
