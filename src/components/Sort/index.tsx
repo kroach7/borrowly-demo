@@ -25,7 +25,7 @@ const Sort = () => {
     },
     {
       text: "Highest APR (%) first",
-      sort_by: "min_percent_apr",
+      sort_by: "max_percent_apr",
       sort_order: "desc",
     },
     {
@@ -35,7 +35,7 @@ const Sort = () => {
     },
     {
       text: "Highest Amount ($) first",
-      sort_by: "min_loan_amount",
+      sort_by: "max_loan_amount",
       sort_order: "desc",
     },
   ];
@@ -74,7 +74,7 @@ const Sort = () => {
 
       <ul
         className={classNames(
-          "p-3 bg-white w-[240px] rounded-xl shadow-lg shadow-black-500/50 absolute top-6 duration-200",
+          "p-3 bg-white w-[240px] rounded-xl shadow-lg shadow-black-500/50 absolute top-6 z-10 duration-200",
           showSort ? "visible opacity-100" : "invisible opacity-0"
         )}
         onClick={(e) => e.stopPropagation()}

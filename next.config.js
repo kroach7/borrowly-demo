@@ -9,6 +9,12 @@ module.exports = {
         port: "",
         pathname: "/images/**",
       },
+      {
+        protocol: 'https',
+        hostname: '**',
+        port: '',
+        pathname: '**',
+      }
     ],
   },
 };

@@ -19,13 +19,22 @@ const LoanPurposesItem = ({ item }: { item: any }) => {
         item.purpose_name === purpose_name && "!bg-[#2BB8B8] text-white"
       )}
       onClick={() => {
-        params.set("purpose_name", `${item.purpose_name}`);
-        router.push(`/?${params.toString()}`, {
-          scroll: false,
-        });
+        if(purpose_name == item.purpose_name) {
+          params.set("purpose_name", ``);
+          router.push(`/?${params.toString()}`, {
+            scroll: false,
+          });
+        } else {
+          params.set("purpose_name", `${item.purpose_name}`);
+          router.push(`/?${params.toString()}`, {
+            scroll: false,
+          });
+        }
       }}
     >
-      <div className="h-[72px] w-full bg-[#F3F3F3] mg-[5px] rounded-xl"></div>
+      <div className="h-[72px] w-full my-[5px] rounded-xl bg-[#F3F3F3] flex justify-start overflow-hidden">
+        <img src={item.purpose_url} className=" h-full object-cover py-[12px] px-[16px]" />
+      </div>      
       <span className="text-[12px] font-semibold leading-[166%]">
         {item.purpose_name}
       </span>
