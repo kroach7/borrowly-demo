@@ -15,7 +15,7 @@ const ClientItems = () => {
   useEffect(() => {
     page &&
       (async function fetchData() {
-        const cards = await getFilteredOffers(params.toString(), `${page * 4}`);
+        const cards = await getFilteredOffers(params.toString(), `${page * 12}`);
         setData([...data, ...cards]);
       })();
   }, [page]);
