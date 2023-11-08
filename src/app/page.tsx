@@ -10,8 +10,11 @@ import {
 } from "@src/components/";
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: "Borrowly: Best Personal Loan Prices in Canada",
   description: "",
+  icons: {
+    icon: "/images/logo.png",
+  },
 };
 
 type Props = {
