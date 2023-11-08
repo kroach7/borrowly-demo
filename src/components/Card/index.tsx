@@ -46,7 +46,7 @@ const Card = ({ item }: { item: any }) => {
         </li>
 
         <li>
-          <span>Percent APR (%)</span>
+          <span>Annual Interest Rate (%)</span>
           <span>{item.min_percent_apr} - {item.max_percent_apr}</span>
         </li>
 
