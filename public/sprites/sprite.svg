@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg">
+    <symbol viewBox="0 0 20 20" fill="none" id='sort' xmlns="http://www.w3.org/2000/svg">
+        <path d="M8.33301 6.667L5.83301 4.167M5.83301 4.167L3.33301 6.667M5.83301 4.167V15.833M11.667 13.333L14.167 15.833M14.167 15.833L16.667 13.333M14.167 15.833V4.167" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+</svg>
