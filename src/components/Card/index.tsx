@@ -56,7 +56,7 @@ const Card = ({ item }: { item: any }) => {
         </li>
       </ul>
 
-      <Link className="w-full" href={item.application_url} passHref>
+      <Link className="w-full" href={item.application_url} passHref target="_blank">
         <Button text="Apply now" className="w-full text-[14px]" />
       </Link>
     </div>
